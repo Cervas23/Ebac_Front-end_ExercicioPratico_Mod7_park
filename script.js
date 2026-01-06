@@ -3,14 +3,18 @@ class contaParquimetro {
     constructor() {
         this.#saldo = 0;
     }
-
+    
     //Métodos
     depositar(valor){
         this.#saldo += valor;
     }
 
     temTroco(valor){
-        return valor > 3;
+        if(valor == 1 || valor == 1.75 || valor == 3){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     saldoZero(){
@@ -49,9 +53,18 @@ class interfaceParquimetro {
 
     troco(){
         const saldoTroco = this.vaga.saldo;
+        console.log(this.vaga.temTroco(saldoTroco))
         if(this.vaga.temTroco(saldoTroco)){
-            let valorDevolvido = saldoTroco - 3;
-            document.getElementById("valorTroco").textContent = `Seu troco é de R$ ${valorDevolvido.toFixed(2)}`;
+            if(saldoTroco>1 && saldoTroco<1.75){
+                let valorDevolvido = saldoTroco - 1;
+                document.getElementById("valorTroco").textContent = `Seu troco é de R$ ${valorDevolvido.toFixed(2)}`;
+            }else if(saldoTroco>1.75 && saldoTroco<3){
+                let valorDevolvido = saldoTroco - 1.75;
+                document.getElementById("valorTroco").textContent = `Seu troco é de R$ ${valorDevolvido.toFixed(2)}`;  
+            }else if(saldoTroco>3){
+                let valorDevolvido = saldoTroco - 3;
+                document.getElementById("valorTroco").textContent = `Seu troco é de R$ ${valorDevolvido.toFixed(2)}`;
+            }  
         }else{
             document.getElementById("valorTroco").textContent = `Você não tem troco a receber`;            
         }
@@ -61,9 +74,19 @@ class interfaceParquimetro {
         let x, tempo;
         const saldoTempo = this.vaga.saldo;
         if(this.vaga.temTroco(saldoTempo)){
-           x = 3;
-           tempo = (4*(Math.pow(x,2)))+(29*x)-(3);
-           document.getElementById("tempoPermanencia").textContent = `Seu tempo de permanência é de ${Math.round(tempo)} minutos.`
+            if(saldoTempo>1 && saldoTempo<1.75){
+                x = 1;
+                tempo = (4*(Math.pow(x,2)))+(29*x)-(3);
+                document.getElementById("tempoPermanencia").textContent = `Seu tempo de permanência é de ${Math.round(tempo)} minutos.`
+            }else if(saldoTempo>1.75 && saldoTempo<3){
+                x = 1.75;
+                tempo = (4*(Math.pow(x,2)))+(29*x)-(3);
+                document.getElementById("tempoPermanencia").textContent = `Seu tempo de permanência é de ${Math.round(tempo)} minutos.` 
+            }else if(saldoTempo>3){
+                x = 3;
+                tempo = (4*(Math.pow(x,2)))+(29*x)-(3);
+                document.getElementById("tempoPermanencia").textContent = `Seu tempo de permanência é de ${Math.round(tempo)} minutos.`
+            }
         }else{
             x = saldoTempo
             tempo = (4*(Math.pow(x,2)))+(29*x)-(3);
@@ -73,7 +96,6 @@ class interfaceParquimetro {
 
     limpar(){
         const saldolimpar = this.vaga.saldo;
-        console.log(saldolimpar)
         if(saldolimpar>=1){
             document.getElementById("valorAdicionado").value = "";
             document.getElementById("valorTroco").textContent = "Imprimindo comprovante...";
