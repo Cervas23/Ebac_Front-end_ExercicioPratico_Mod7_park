@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adivinhador</title>
+    <title>Parkaqui</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="containerPrim">
         <header>
-            <h1 class="titulo">PARKAQUI - o sua parada!</h1>
+            <h1 class="titulo">PARKAQUI - a sua parada!</h1>
         </header>
         <main>
             <section class="regra">
@@ -17,16 +17,19 @@
                 <p>Insira seu dinheiro e te protegemos por um tempo. Permanência máxima 120 min.</p>
             </section>
             <section class="espacoUser">
-                <p id="saldo">Saldo: R$ 0,00</p>
+                <p id="valorSaldo">Saldo: R$ 0,00</p>
                 <div class="inputs">
                     <input type="number" id="valorAdicionado" placeholder="Adicione um valor...">
-                    <button onclick="" id="btnAdicionar" type="button">ADICIONAR</button>
+                    <button onclick="park.depositar()" id="btnAdicionar" type="button">ADICIONAR</button>
                 </div>
             <section class="troco">
-                <p id="valorTroco">...</p>
+                <p id="valorTroco"></p>
             </section>
             <section class="tempo">
-                <p id="tempoPermanencia">... min</p>
+                <p id="tempoPermanencia"></p>
+            </section>
+            <section>
+                <button onclick="park.limpar()" id="btnOK" type="button">OK</button>
             </section>
             <h2>Obrigado pela preferência.</h2>
         </main>
